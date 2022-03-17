@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "runner": "terminal",
+  "type": "shell",
+  "echoCommand": true,
+  "presentation": {
+    "reveal": "always"
+  },
+  "tasks": [
+    {
+      "label": "save and compil for C++",
+      "command": "g++",
+      "args": ["${file}", "-o", "${fileDirname}/${fileBasenameNoExtension}"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": {
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+          "regexp": "^ (. *) : (\\ d +) : (\\ d +) : \\ s + ( 경고 오류) : \\ s + (. *) $ "
+        }
+      }
+    },
+    {
+      "label": "save and compile for C",
+      "command": "gcc",
+      "group": "build",
+      "args": ["${file}", "-o", "${fileDirname}/${fileBasenameNoExtension}"],
+      "problemMatcher": []
+    },
+    {
+      "type": "cppbuild",
+      "label": "execute",
+      "command": "cmd",
+      "args": ["/C", "${fileDirname}\\${fileBasenameNoExtension}"],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$msCompile"],
+      "group": "test",
+      "detail": "컴파일러: cl.exe"
+    }
+  ]
+}
