@@ -5,7 +5,7 @@ using namespace std;
 string input;
 
 int main() {
-    cout << "enter your string" << endl;
+    //cout << "enter your string" << endl;
     getline(cin, input);
     for(int i = 0; i < input.size(); i++) {
         if(input[i] < 91 && input[i] > 64)
@@ -26,6 +26,6 @@ int main() {
             else input[i] += 13;
         }// 소문자 판별 
     }
-    cout << input;
+    //cout << input;
     return 0;
 }
