@@ -3,21 +3,28 @@
 #include <string>
 using namespace std;
 int cnt[26];
-string player[150];
+int n;
+string player;
+string ret;
 int main() {
-    player[0] = "jeongho";
-    player[1] = "daeun";
-    for(int i = 0; i < 150; i ++)
+
+    cout << "enter your player number" << endl;
+    cin >> n;
+    for(int i= 0; i < n ; i ++ )
     {
-        for(char a = player[i].at(0) ; a < 1; a++)
+        cout << "enter your player name" << endl;
+        cin >> player;
+        cnt[player[0] - 'a']++;
+    }
+    
+    for(int i = 0; i < 26; i ++ )
+    {
+        if(cnt[i] >= 5)
         {
-            cnt[a - 'a']++;
+            ret += i+ 'a';
         }
     }
-
-    for(int i = 0 ; i < 26; i++)
-    {
-        cout << cnt[i] << " ";
-    }
+    if(ret.size()) cout << ret << " ";
+    else cout << "PREDAJA" << endl;
     return 0;
 }
