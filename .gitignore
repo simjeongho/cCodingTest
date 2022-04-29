@@ -3,3 +3,11 @@ algo1/**
 ex1/**
 bin/**
 node_modules/
+
+*.sln
+*.json
+*.suo
+*.vcxproj
+*.filters
+*.user
+*.db
