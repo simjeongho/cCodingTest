@@ -1,4 +1,4 @@
--- HTTP/part of Hypertext Transfer Protocol -- HTTP/1.1
+part of Hypertext Transfer Protocol -- HTTP/1.1
 RFC 2616 Fielding, et al.
 
 //comment : abababababababababababab
