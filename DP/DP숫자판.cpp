@@ -1,33 +1,58 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 #define col 9
 #define row 8
+int colmax;
+int maxi, maxj;
 void numberGame(int twoDimension[][col]) {
     for (int i = 1; i < row; i++) {
         for (int j = 0; j < col; j++) {
             if (j == 0) {
-                twoDimension[i][j] += (twoDimension[i - 1][j] < twoDimension[i - 1][j + 1] ? twoDimension[i - 1][j + 1] : twoDimension[i - 1][j]);//행의 왼쪽 끝일 때 [i-1][j] == 바로 위 < [i-1][j+1] == 오른쪽 대각선 위라면 더 큰 걸 더해준다. 두 가지만 고려한다. 
-                cout << "if : " << twoDimension[i][j] << "\n";
+                twoDimension[i][j] += (twoDimension[i - 1][j] < twoDimension[i - 1][j + 1] ? 
+                    twoDimension[i - 1][j + 1] : twoDimension[i - 1][j]);//행의 왼쪽 끝일 때 [i-1][j] == 바로 위 < [i-1][j+1] == 오른쪽 대각선 위라면 더 큰 걸 더해준다. 두 가지만 고려한다. 
+                //cout << "if : " << twoDimension[i][j] << "\n";
+                //cout << "i: " << i << "j :" << j << "\n";
             }
             else if (j == col -1) {
-                twoDimension[i][j] += (twoDimension[i - 1][j - 1] < twoDimension[i - 1][j] ? twoDimension[i - 1][j] : twoDimension[i - 1][j - 1]); //행이 오른쪽 끝일 때[i-1][j-1] = 왼쪽 대각선 위  < [i-1][j]바로 위라면 더 큰 걸 더해준다. 두 가지만 고려한다. 
-                cout << "else if  : " << twoDimension[i][j] << "\n";
+                twoDimension[i][j] += (twoDimension[i - 1][j - 1] < twoDimension[i - 1][j] ? 
+                    twoDimension[i - 1][j] : twoDimension[i - 1][j - 1]); //행이 오른쪽 끝일 때[i-1][j-1] = 왼쪽 대각선 위  < [i-1][j]바로 위라면 더 큰 걸 더해준다. 두 가지만 고려한다. 
+                //cout << "else if  : " << twoDimension[i][j] << "\n";
             }
             else {
                 //행의 중간이라면 왼쪽 대각선 위와 바로 위를 비교 바로 위와 오른쪽 대각선 위를 비교 왼쪽 대각선 위가 더 크다면 왼쪽 대각선과 오른쪽 대각선을 비교  제일 큰 값 더해준다. 
-                twoDimension[i][j] += (twoDimension[i - 1][j - 1] < twoDimension[i - 1][j] ? twoDimension[i - 1][j] < twoDimension[i - 1][j + 1] ? twoDimension[i - 1][j + 1] : twoDimension[i - 1][j] : twoDimension[i - 1][j - 1] < twoDimension[i - 1][j + 1] ? twoDimension[i - 1][j + 1] : twoDimension[i - 1][j - 1]);
-                cout << "else   : " << twoDimension[i][j] << "\n";
+                twoDimension[i][j] += (twoDimension[i - 1][j - 1] < twoDimension[i - 1][j] ? 
+                    twoDimension[i - 1][j] < twoDimension[i - 1][j + 1] ? twoDimension[i - 1][j + 1] : twoDimension[i - 1][j] : 
+                    twoDimension[i - 1][j - 1] < twoDimension[i - 1][j + 1] ? twoDimension[i - 1][j + 1] : twoDimension[i - 1][j - 1]);
+                //cout << "else   : " << twoDimension[i][j] << "\n";
+            }
+           
+        }
+        if (i == row - 1) {
+            cout << "-----------------------------------------\n";
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 9; j++) {
+                    cout << twoDimension[i][j] << " ";
+                }
+                cout << "\n";
+            }
+            for (int i = 1; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    if (colmax < twoDimension[i][j]) {
+                        colmax = twoDimension[i][j];
+                        maxi = i;
+                        maxj = j;
+                    }
+                }
+                cout << "============================colmax=============================" << "\n";
+                cout << colmax << " " << "maxi: " << maxi << "maxj: " << maxj << "\n";
+                colmax = -10000;
             }
         }
-        cout << "-----------------------------------------\n";
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 9; j++) {
-                cout << twoDimension[i][j] << " ";
-            }
-            cout << "\n";
-        }
+        else continue;
+       
     }
     int maxNum = 0;
     for (int i = 0; i < col; i++) {
@@ -49,13 +74,6 @@ int main() {
         {4,4,23,6,2,-1,3,-4,34},
         {78,32,1,7,3,-4,-23,-23,6},
     };
-
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 9; j++) {
-            cout << twoDimension[i][j] << " ";
-        }
-        cout << "\n";
-    }
 
     numberGame(twoDimension);
 

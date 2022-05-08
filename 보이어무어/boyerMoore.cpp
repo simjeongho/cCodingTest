@@ -36,7 +36,7 @@ int MisChar(string p, string t) {
 
 		}
 		cout << "found at " << i + 1 << "\n"; // 시작 위치를 반환
-		i = i + M+ 1;
+		i = i + M+ 1; //텍스트의 인덱스를 패턴을 찾은 곳 + 패턴 길이 +1로 하여 패턴이 다음 번부터 비교하기 시작한다. 
 	}
 		
 }
