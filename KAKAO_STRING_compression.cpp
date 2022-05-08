@@ -1,45 +1,64 @@
-#include <iostream>
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
-vector<string> v;
 
 int solution(string s) {
-    int answer = 0;
-    string copy = s;
-    int t = 0;
-    int u = 0;
     int m = s.size() / 2;
-    for (int i = 1; i <= m; i++) {
-        string first = s.substr(0, i);
-        v.push_back(first);
-        while (u < s.size() - i) {
-            string temp = s.substr(u + i, i);
-            cout <<"temp:" << temp << "\n";
-            if (v.back() == temp) v.push_back(temp);
+    string temp;
+    string copy = s;
+    int si = 1;
+    int minlength = copy.length();
+    for (int i = 1; i <= m; i++)
+    {
+        temp = s.substr(0, i);
+        for (int j = i; j <= copy.size(); j += i) {
+            if (temp == copy.substr(j, i)) {
+                si++;
+
+            }
             else {
-                int size;
-                size = v.size();
-                if(size >1)copy.replace(u, i, to_string(size)); 
-                cout << " string! :" << copy << "\n";
-                    v.clear();
-                    v.push_back(temp);
+                if (si > 1) {
+                    copy.replace(j - (si * i), (si - 1) * i, to_string(si));
+
+                    j = j - ((si - 1) * i) + to_string(si).size();
+                }
+                si = 1;
+                temp = copy.substr(j, i);
+
+
             }
-            cout << "vector! =============================\n";
-            for (int i = 0; i < v.size(); i++) {
-                
-                cout << "v:" << v[i] << "\n";
-            }
-            u = u+i;     
+
+
         }
-        u = 0;
+        cout << "i: " << i << " copy: " << copy << "\n";
+        if (minlength > copy.length()) minlength = copy.length();
+
+        copy = s;
+
     }
-    return answer;
+    cout << "minlength: " << minlength << "\n";
+    return minlength;
 }
 
 int main() {
-    solution("aabbaccc");
+    //solution("aabbacccc");
+    cout << "\n";
+    //solution("aabbaccc");
+    //solution("ababcdcdababcdcd");
+
+    //solution("abcabcdede");
+
+   // solution("abcabcabcabcdededededede");
+
+    //solution("xababcdcdababcdcd");
+    //solution("ababdababdacdcdacdcddededdeded");
+    solution("aaaaaaaaaaaabcd");
+    solution("xxxxxxxxxxyyy");
+    solution("abcabcabcdabcfabcabcabczabcabcdddabc");
+    solution("aababa");
+    solution("aaaaaaaaaab");
 
     return 0;
 }
