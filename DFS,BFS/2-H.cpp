@@ -9,7 +9,6 @@ bool vowel = 0;
 bool seq = 0;
 int count[26];
 stack<char> charStack;
-
 void prejudicePasword (string str) {
     for(char a : str) {
         if(a == 97 || a == 101 || a == 105 || a == 111 || a == 117 ) {
@@ -30,12 +29,9 @@ void prejudicePasword (string str) {
         // }
         else {
             seq = 1;
-        }
-
-        
+        } 
     }
 }
-
 void print() {
     if(vowel == 1 && seq == 1)
     {
@@ -43,7 +39,6 @@ void print() {
     }
     else cout << "it is unacceptable" <<endl;
 }
-
 int main() {
 
     while(password != "end") {

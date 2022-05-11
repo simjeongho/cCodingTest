@@ -33,22 +33,15 @@ int count(){
 			}	
 		}
 		cout <<  ret << endl;
-		return ret;
-	
+		return ret;	
 } 
-
-int main(){
-	
+int main(){	
 	cin>> n;
 	cin >> m;
 	cin >> j;
-	
 	for(int i = 0; i < j; i++) {
-		cin >> apple[i];
-		
+		cin >> apple[i];	
 	}
-	
 	count();
-	
 	return 0;
 }
