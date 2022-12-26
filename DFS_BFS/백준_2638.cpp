@@ -38,7 +38,7 @@ int main() {
 		}
 	}
 	while (1) {
-		fill(&visited[0][0], &visited[0][0] + 101 * 101, 0); // visited map �ʱ�ȭ
+		fill(&visited[0][0], &visited[0][0] + 101 * 101, 0); // visited map �ʱ�ȭ
 		v.clear();
 		sol(0, 0);
 		for (auto a : v) {
