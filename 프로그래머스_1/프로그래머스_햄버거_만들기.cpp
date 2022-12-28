@@ -1,33 +1,46 @@
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <algorithm>
-
+#include <stack>
 using namespace std;
 
 int solution(vector<int> ingredient) {
-    int answer = 0;
-    int cnt = 1;
-    string s;
-    int size = ingredient.size();
-    for (int i = 0; i < size; i++) {
-        if (s.length() < 3) {
-            s += to_string(ingredient[i]); 
-        }
-        else {
-            s += to_string(ingredient[i]);
-            
-            if (s.substr(s.length() - 4) == "1231") {
-                answer++;
-                s.erase(s.end()-4, s.end());
-            }
-        }
-    }
-    return answer;
+	int answer = 0;
+	int cnt = 0;
+	stack<int> st;
+	st.push(ingredient[0]);
+	for (int i = 1; i < ingredient.size(); i++) {
+		if (ingredient[i] == 1) {
+			cnt++; cout << "cnt:" << cnt << "\n";
+		}
+		else if (ingredient[i] == 2) {
+			if (st.top() == 1) { cnt++; cout << "cnt:" << cnt << "\n";
+			}
+			else cnt = 0;
+		}
+		else {
+			if (st.top() == 2) { cnt++; cout << "cnt:" << cnt << "\n";
+			}
+			else cnt = 0;
+		}
+		st.push(ingredient[i]);
+		if (cnt == 4) {
+			for (int i = 0; i < 4; i++) {
+				st.pop();
+			}
+			if (st.top() == 1) { cnt = 1; cout << "cnt:" << cnt << "\n";
+			}
+			answer++;
+		}
+	}
+	
+	cout << "answer" << answer << "\n";
+	return answer;
 }
+
 int main() {
-    vector <int> ingredient = { 2,1,1,2,3,1,2,3,1 };
-    vector <int> ingredient1 = { 1,3,2,1,2,1,3,1,2 };
-    cout << solution(ingredient) << "\n";
-    return 0;
+	vector<int> ingredient = { 2,1,1,2,3,1,2,3,1 };
+	solution(ingredient);
+
+	return 0;
 }
